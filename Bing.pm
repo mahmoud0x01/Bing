@@ -50,12 +50,9 @@ package Bing {
     );
 
     sub search {
-        print "Working\n";
         my $self = shift;
-        print $self->keyword . "\n";
-        print $self->timeout . "\n";
-        print $self->pages . "\n";
         my $page = 0;
+        print "Working On Page ".$page +1 ."\n";
         for ( my $i = 0 ; $i < $self->pages * 10 ; $i += 10 ) {
 
             my $ua = LWP::UserAgent->new(
