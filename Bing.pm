@@ -1,7 +1,6 @@
 package Bing {
     use Moose;
     use LWP::UserAgent;
-    use experimental 'smartmatch';
     has 'keyword' => ( is => 'rw', isa => 'Str', required => 1 );
     has 'pages'   => ( is => 'rw', isa => 'Int', default  => 10 );
     has 'count'   => ( is => 'rw', isa => 'Int', default  => 20 );
@@ -125,8 +124,7 @@ package Bing {
         my $self  = shift;
         my $html  = shift;
         my $tag   = shift;
-        my @links = $self->all;
-        my @links1;
+        my @links;
         while ( $html =~
 m/<$tag>(<\s*?a\s+?href\s*?=(\"|\')([^(\"|\')]*?)(\"|\')([^>]*?)>(.*?)<\s*?\/a\s*?>)/gis
           )
@@ -148,11 +146,11 @@ m/<$tag>(<\s*?a\s+?href\s*?=(\"|\')([^(\"|\')]*?)(\"|\')([^>]*?)>(.*?)<\s*?\/a\s
                 $link = $link . "/";
             }
             
-                push @links1, $link;
+                push @links, $link;
 
             
         }
-        return @links1;
+        return @links;
     }
     sub clean {
         my $self = shift;
