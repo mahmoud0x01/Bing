@@ -111,6 +111,11 @@ package Bing {
         my @links   = @_;
         my @domains;
         for my $link (@links) {
+            unless ( ( $link =~ /\/$/ )
+                or ( $link =~ /([^\/]\/[^\/]+\.[^\/]+)/ ) )
+            {
+                $link = $link . "/";
+            }
             if ( $link =~ m|(\w+)://([^/:]+)(:\d+)?/(.*)| ) {
                 my $domain = $2;
                 push @domains, $domain; 
