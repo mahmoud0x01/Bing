@@ -10,6 +10,7 @@ use `cpan install Moose` , `cpan install LWP::UserAgent` if you don't have any o
 # Usage Example
 
 ```perl
+use lib "./"; #to use the module from the same dir of your code
 use Bing;
 my $bing = Bing->new(keyword => "SearchWord" , pages => 10 , ua => "UserAgent String" , timeout=> 30 , count =>20);
 $bing->search; #Starts The Search 
